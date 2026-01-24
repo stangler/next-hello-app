@@ -1,0 +1,43 @@
+{
+  "name": "next-hello-app",
+  "version": "1.0.0",
+  "description": "A Next.js application displaying Hello Next with TypeScript, Tailwind CSS, and App Router",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stangler/next-hello-app.git"
+  },
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/stangler/next-hello-app/issues"
+  },
+  "homepage": "https://github.com/stangler/next-hello-app#readme",
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "25.0.10",
+    "@types/react": "19.2.9",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "typescript": "^5.4.5"
+  }
+}
