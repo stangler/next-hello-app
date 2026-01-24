@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --debug --cache --cache-location node_modules/.cache/eslint/ --cache-strategy content .",
+    "lint:timing": "TIMING=1 eslint --debug",
     "test": "vitest run --coverage"
   },
   "repository": {
