@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import Home from './page'
+import Home from './page.jsx'
 
 describe('Home Page', () => {
   it('renders the heading', () => {
@@ -23,5 +23,13 @@ describe('Home Page', () => {
     render(<Home />)
     const paragraph = screen.getByText('Welcome to your Next.js application!')
     expect(paragraph).toHaveClass('mt-4 text-lg text-gray-600')
+  })
+
+  it('renders the about page link', () => {
+    render(<Home />)
+    const link = screen.getByRole('link', { name: 'About this app' })
+    expect(link).toBeInTheDocument()
+    expect(link).toHaveAttribute('href', '/about')
+    expect(link).toHaveClass('text-blue-600 hover:text-blue-800 underline')
   })
 })
