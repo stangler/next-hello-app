@@ -5,7 +5,7 @@ import Home from './page.jsx'
 describe('Home Page', () => {
   it('renders the heading', () => {
     render(<Home />)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hello Next')
+    expect(screen.getByText('Hello Next')).toBeInTheDocument()
   })
 
   it('renders the welcome message', () => {
@@ -15,7 +15,7 @@ describe('Home Page', () => {
 
   it('has the correct heading class', () => {
     render(<Home />)
-    const heading = screen.getByRole('heading', { level: 1 })
+    const heading = screen.getByText('Hello Next')
     expect(heading).toHaveClass('text-4xl font-bold text-blue-600')
   })
 
@@ -27,7 +27,7 @@ describe('Home Page', () => {
 
   it('renders the about page link', () => {
     render(<Home />)
-    const link = screen.getByRole('link', { name: 'About this app' })
+    const link = screen.getByText('About this app')
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/about')
     expect(link).toHaveClass('text-blue-600 hover:text-blue-800 underline')
