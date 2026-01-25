@@ -9,6 +9,8 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
 
     steps:
       - name: Checkout code
