@@ -91,14 +91,3 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Comment Preview URL
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const deploymentUrl = '${{ steps.deploy.outputs.deployment-url }}';
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 Preview deployment is ready: ${deploymentUrl}`
-            })
