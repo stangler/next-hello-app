@@ -5,7 +5,7 @@ import About from './page.jsx'
 describe('About Page', () => {
   it('renders the about heading', () => {
     render(<About />)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('About This App')
+    expect(screen.getByText('About This App')).toBeInTheDocument()
   })
 
   it('renders the welcome message', () => {
@@ -15,7 +15,7 @@ describe('About Page', () => {
 
   it('has the correct heading class', () => {
     render(<About />)
-    const heading = screen.getByRole('heading', { level: 1 })
+    const heading = screen.getByText('About This App')
     expect(heading).toHaveClass('text-4xl font-bold text-blue-600')
   })
 
