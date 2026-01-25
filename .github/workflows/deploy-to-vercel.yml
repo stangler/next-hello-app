@@ -8,6 +8,32 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
   deploy-production:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -26,6 +52,9 @@ jobs:
       - name: Deploy to Vercel Production
         id: deploy
         run: |
+          # Trim whitespace from secrets and set as environment variables
+          export VERCEL_ORG_ID=$(echo "${{ secrets.VERCEL_ORG_ID }}" | tr -d '\n\r\t ')
+          export VERCEL_PROJECT_ID=$(echo "${{ secrets.VERCEL_PROJECT_ID }}" | tr -d '\n\r\t ')
           vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
@@ -51,6 +80,9 @@ jobs:
       - name: Deploy to Vercel Preview
         id: deploy
         run: |
+          # Trim whitespace from secrets and set as environment variables
+          export VERCEL_ORG_ID=$(echo "${{ secrets.VERCEL_ORG_ID }}" | tr -d '\n\r\t ')
+          export VERCEL_PROJECT_ID=$(echo "${{ secrets.VERCEL_PROJECT_ID }}" | tr -d '\n\r\t ')
           vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --token=${{ secrets.VERCEL_TOKEN }}
           DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
@@ -59,14 +91,3 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Comment Preview URL
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const deploymentUrl = '${{ steps.deploy.outputs.deployment-url }}';
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 Preview deployment is ready: ${deploymentUrl}`
-            })
