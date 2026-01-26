@@ -19,17 +19,12 @@ describe('Home Page', () => {
     expect(heading).toHaveClass('text-4xl font-bold text-blue-600')
   })
 
-  it('has the correct paragraph class', () => {
+  it('renders the about button', () => {
     render(<Home />)
-    const paragraph = screen.getByText('Welcome to your Next.js application!')
-    expect(paragraph).toHaveClass('mt-4 text-lg text-gray-600')
-  })
-
-  it('renders the about page link', () => {
-    render(<Home />)
-    const link = screen.getByText('About this app')
+    const button = screen.getByRole('button', { name: 'About this app' })
+    expect(button).toBeInTheDocument()
+    const link = screen.getByRole('link', { name: 'About this app' })
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/about')
-    expect(link).toHaveClass('text-blue-600 hover:text-blue-800 underline')
   })
 })

@@ -8,36 +8,17 @@ describe('About Page', () => {
     expect(screen.getByText('About This App')).toBeInTheDocument()
   })
 
-  it('renders the welcome message', () => {
-    render(<About />)
-    expect(screen.getByText('Welcome to the about page!')).toBeInTheDocument()
-  })
-
-  it('has the correct heading class', () => {
-    render(<About />)
-    const heading = screen.getByText('About This App')
-    expect(heading).toHaveClass('text-4xl font-bold text-blue-600')
-  })
-
   it('renders the description text', () => {
     render(<About />)
-    expect(screen.getByText('This is a Next.js application built with TypeScript and Tailwind CSS.')).toBeInTheDocument()
+    expect(screen.getByText('This is a Next.js application built with TypeScript and Tailwind CSS. The application demonstrates modern web development practices including App Router architecture, TypeScript for type safety, Tailwind CSS for styling, Vitest for testing, and ESLint for code quality.')).toBeInTheDocument()
   })
 
-  it('renders the features list', () => {
+  it('renders the back to home button', () => {
     render(<About />)
-    expect(screen.getByText('App Router architecture')).toBeInTheDocument()
-    expect(screen.getByText('TypeScript for type safety')).toBeInTheDocument()
-    expect(screen.getByText('Tailwind CSS for styling')).toBeInTheDocument()
-    expect(screen.getByText('Vitest for testing')).toBeInTheDocument()
-    expect(screen.getByText('ESLint for code quality')).toBeInTheDocument()
-  })
-
-  it('renders the back to home link', () => {
-    render(<About />)
+    const button = screen.getByRole('button')
+    expect(button).toBeInTheDocument()
     const link = screen.getByRole('link', { name: 'Back to Home' })
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/')
-    expect(link).toHaveClass('text-blue-600 hover:text-blue-800 underline')
   })
 })
