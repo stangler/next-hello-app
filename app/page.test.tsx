@@ -27,4 +27,11 @@ describe('Home Page', () => {
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/about')
   })
+
+  it('renders the Next.js logo image', () => {
+    render(<Home />)
+    const image = screen.getByAltText('Next.js Logo')
+    expect(image).toBeInTheDocument()
+    expect(image.getAttribute('src')).toMatch(/^\/_next\/image/)
+  })
 })

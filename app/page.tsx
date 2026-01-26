@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
 import Card from './components/Card';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -9,6 +10,15 @@ export default function Home() {
       <Header />
       <main className="flex-grow container mx-auto p-8">
         <div className="text-center mb-12">
+          <div className="mb-8">
+            <Image
+              src="/images/nextjs-logo.png"
+              alt="Next.js Logo"
+              width={300}
+              height={100}
+              className="mx-auto"
+            />
+          </div>
           <h1 className="text-4xl font-bold text-blue-600 mb-4">Hello Next</h1>
           <p className="text-lg text-gray-600 mb-8">Welcome to your Next.js application!</p>
           <Button variant="primary" size="lg">
