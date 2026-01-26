@@ -1,32 +1,24 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import AboutSection from './components/AboutSection';
+import Button from '../components/Button';
 
 export default function About() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow flex flex-col items-center justify-center p-24">
-        <h1 className="text-4xl font-bold text-blue-600">About This App</h1>
-        <p className="mt-4 text-lg text-gray-600">Welcome to the about page!</p>
-        <div className="mt-8 max-w-2xl text-center">
-          <p className="mb-4 text-gray-700">
-            This is a Next.js application built with TypeScript and Tailwind CSS.
-          </p>
-          <p className="mb-4 text-gray-700">
-            The application demonstrates modern web development practices including:
-          </p>
-          <ul className="list-disc list-inside text-left text-gray-700 space-y-2">
-            <li>App Router architecture</li>
-            <li>TypeScript for type safety</li>
-            <li>Tailwind CSS for styling</li>
-            <li>Vitest for testing</li>
-            <li>ESLint for code quality</li>
-          </ul>
-        </div>
-        <div className="mt-8">
-          <a href="/" className="text-blue-600 hover:text-blue-800 underline">
-            Back to Home
-          </a>
+      <main className="flex-grow">
+        <AboutSection
+          title="About This App"
+          description="This is a Next.js application built with TypeScript and Tailwind CSS. The application demonstrates modern web development practices including App Router architecture, TypeScript for type safety, Tailwind CSS for styling, Vitest for testing, and ESLint for code quality."
+        />
+
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center mb-8">
+            <Button variant="secondary">
+              <a href="/" className="block">Back to Home</a>
+            </Button>
+          </div>
         </div>
       </main>
       <Footer />
