@@ -197,3 +197,4 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 - [Vitest Documentation](https://vitest.dev/guide/)
 - [ESLint Documentation](https://eslint.org/docs/user-guide/getting-started)
 - [Testing Library Documentation](https://testing-library.com/docs/)
+- [Supabase Documentation](https://supabase.com/docs)

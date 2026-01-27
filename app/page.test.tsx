@@ -1,6 +1,15 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Home from './page'
+
+// Mock the useMessage hook
+vi.mock('./hooks/useMessage', () => ({
+  default: () => ({
+    message: { id: 1, content: 'Hello Next', created_at: '2023-01-01T00:00:00Z' },
+    loading: false,
+    error: null
+  })
+}))
 
 describe('Home Page', () => {
   it('renders the heading', () => {

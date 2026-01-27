@@ -1,10 +1,15 @@
+"use client"
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
 import Card from './components/Card';
 import Image from 'next/image';
+import useMessage from './hooks/useMessage';
 
 export default function Home() {
+  const { message, loading, error } = useMessage();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -19,7 +24,9 @@ export default function Home() {
               className="mx-auto"
             />
           </div>
-          <h1 className="text-4xl font-bold text-blue-600 mb-4">Hello Next</h1>
+          <h1 className="text-4xl font-bold text-blue-600 mb-4">
+            {loading ? 'Loading...' : error ? error : message?.content || 'Hello Next'}
+          </h1>
           <p className="text-lg text-gray-600 mb-8">Welcome to your Next.js application!</p>
           <Button variant="primary" size="lg">
             <a href="/about" className="block">About this app</a>
