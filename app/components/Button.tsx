@@ -6,6 +6,7 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -14,6 +15,7 @@ export default function Button({
   variant = 'primary',
   size = 'md',
   className = '',
+  disabled = false,
 }: ButtonProps) {
   const baseClasses = 'rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
   const variantClasses = {
@@ -30,7 +32,8 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      disabled={disabled}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {children}
     </button>

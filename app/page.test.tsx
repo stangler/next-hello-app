@@ -1,6 +1,33 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Home from './page'
+
+// Mock the Supabase client to avoid environment variable issues
+vi.mock('./lib/supabase/client', () => ({
+  supabase: {
+    from: vi.fn(() => ({
+      select: vi.fn(() => ({
+        order: vi.fn(() => ({
+          limit: vi.fn(() => ({
+            single: vi.fn().mockResolvedValue({
+              data: { id: 1, message: 'Hello Next', created_at: '2023-01-01T00:00:00Z', updated_at: '2023-01-01T00:00:00Z' },
+              error: null
+            })
+          }))
+        }))
+      }))
+    }))
+  }
+}))
+
+// Mock the useGreeting hook to return the expected data
+vi.mock('./lib/supabase/hooks', () => ({
+  useGreeting: vi.fn(() => ({
+    greeting: { id: 1, message: 'Hello Next', created_at: '2023-01-01T00:00:00Z', updated_at: '2023-01-01T00:00:00Z' },
+    loading: false,
+    error: null
+  }))
+}))
 
 describe('Home Page', () => {
   it('renders the heading', () => {
