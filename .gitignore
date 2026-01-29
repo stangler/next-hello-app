@@ -38,5 +38,8 @@ next-env.d.ts
 # deep-planning
 implementation_plan.md
 
+# devcontainer
+.devcontainer
+
 # eslint cache
 node_modules/.cache/eslint/
