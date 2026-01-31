@@ -43,3 +43,6 @@ implementation_plan.md
 
 # eslint cache
 node_modules/.cache/eslint/
+
+# playwright
+playwright-report
