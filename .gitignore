@@ -46,3 +46,4 @@ node_modules/.cache/eslint/
 
 # playwright
 playwright-report
+e2e/
